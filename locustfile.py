@@ -18,10 +18,10 @@ class ChatUser(HttpUser):
                     {
                         "content": random.choice(
                             [
-                                "What is included in my Northwind Health Plus plan that is not in standard?",
-                                "What does a Product Manager do?",
-                                "What happens in a performance review?",
-                                "Whats your whistleblower policy?",
+                                "What are best practices for preventing data leaks in my organization?",
+                                "Does GitHub support two factor authentication?",
+                                "What does a dependabot alert do?",
+                                "What does verifying a domain for my organization do?",
                             ]
                         ),
                         "role": "user",
@@ -41,12 +41,12 @@ class ChatUser(HttpUser):
             "/chat",
             json={
                 "history": [
-                    {"content": "What happens in a performance review?", "role": "user"},
+                    {"content": "What does a dependabot alert do?", "role": "user"},
                     {
-                        "content": "During a performance review, employees will receive feedback on their performance over the past year, including both successes and areas for improvement. The feedback will be provided by the employee's supervisor and is intended to help the employee develop and grow in their role [employee_handbook-3.pdf]. The review is a two-way dialogue between the employee and their manager, so employees are encouraged to be honest and open during the process [employee_handbook-3.pdf]. The employee will also have the opportunity to discuss their goals and objectives for the upcoming year [employee_handbook-3.pdf]. A written summary of the performance review will be provided to the employee, which will include a rating of their performance, feedback, and goals and objectives for the upcoming year [employee_handbook-3.pdf].",
+                        "content": "Dependabot alerts tell you that your code depends on a package that is insecure. [About-Dependabot-alerts.pdf]. Dependabot performs a scan of the default branch of your repository to detect insecuredependencies [About-Dependabot-alerts.pdf]. GitHub detects vulnerable dependencies and malware in public repositories and displays thedependency graph, but does not generate Dependabot alerts by default. Repository owners orpeople with admin access can enable Dependabot alerts for public repositories. [About-Dependabot-alerts.pdf].",
                         "role": "assistant",
                     },
-                    {"content": "Does my plan cover eye exams?", "role": "user"},
+                    {"content": "What does verifying a domain for my organization do?", "role": "user"},
                 ],
                 "overrides": {
                     "retrieval_mode": "hybrid",
