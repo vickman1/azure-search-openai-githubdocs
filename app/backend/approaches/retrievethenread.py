@@ -17,7 +17,7 @@ class RetrieveThenReadApproach(Approach):
     """
 
     system_chat_template = (
-        "You are an intelligent assistant helping Contoso Inc employees with their healthcare plan questions and employee handbook questions. "
+        "You are an intelligent assistant helping anyone who may have questions about GitHub Products and services and how to configure them. "
         + "Use 'you' to refer to the individual asking the questions even if they ask with 'I'. "
         + "Answer the following question using only the data provided in the sources below. "
         + "For tabular information return it as an html table. Do not return markdown format. "
@@ -27,15 +27,13 @@ class RetrieveThenReadApproach(Approach):
 
     # shots/sample conversation
     question = """
-'What is the deductible for the employee plan for a visit to Overlake in Bellevue?'
+'Tell me about GitHub CoPilot?'
 
 Sources:
-info1.txt: deductibles depend on whether you are in-network or out-of-network. In-network deductibles are $500 for employee and $1000 for family. Out-of-network deductibles are $1000 for employee and $2000 for family.
-info2.pdf: Overlake is in-network for the employee plan.
-info3.pdf: Overlake is the name of the area that includes a park and ride near Bellevue.
-info4.pdf: In-network institutions include Overlake, Swedish and others in the region
+GitHubCopilotGitHubEnterpriseCloud-1.pdf: GitHub Copilot is an AI pair programmer that offers autocomplete-style suggestions as you code. GitHub Copilot is trained on all languages that appear in public repositories. GitHub Copilot is available as an extension in Visual Studio Code, Visual Studio, Vim, Neovim, the JetBrains suite of IDEs, and Azure Data Studio.
+GitHubCopilotGitHubEnterpriseCloud-2.pdf: CoPilot for Individuals, $10 USD per month. CoPilot for Business, $19 USD per user per month.
 """
-    answer = "In-network deductibles are $500 for employee and $1000 for family [info1.txt] and Overlake is in-network for the employee plan [info2.pdf][info4.pdf]."
+    answer = "GitHub Copilot is an AI pair programmer trained on all languages that appear in public repositories. GitHub Copilot is available as an extension in Visual Studio Code, Visual Studio, Vim, Neovim, the JetBrains suite of IDEs, and Azure Data Studio. [GitHubCopilotGitHubEnterpriseCloud-1.pdf] and CoPilot for Individuals, costs $10 USD per month and Business, costs $19 USD per user per month. [GitHubCopilotGitHubEnterpriseCloud-2.pdf]."
 
     def __init__(
         self,
