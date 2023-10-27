@@ -26,20 +26,20 @@ class ChatReadRetrieveReadApproach(Approach):
     top documents from search, then constructs a prompt with them, and then uses OpenAI to generate an completion
     (answer) with that prompt.
     """
-    system_message_chat_conversation = """Assistant helps the company employees with their healthcare plan questions, and questions about the employee handbook. Be brief in your answers.
+    system_message_chat_conversation = """Assistant helps the company employees with any questions about github products and services, and questions about collaborative coding, ci/cd and devops, security, client apps, project management, developers, enterprise and teams. Be brief in your answers.
 Answer ONLY with the facts listed in the list of sources below. If there isn't enough information below, say you don't know. Do not generate answers that don't use the sources below. If asking a clarifying question to the user would help, ask the question.
 For tabular information return it as an html table. Do not return markdown format. If the question is not in English, answer in the language used in the question.
 Each source has a name followed by colon and the actual information, always include the source name for each fact you use in the response. Use square brackets to reference the source, e.g. [info1.txt]. Don't combine sources, list each source separately, e.g. [info1.txt][info2.pdf].
 {follow_up_questions_prompt}
 {injected_prompt}
 """
-    follow_up_questions_prompt_content = """Generate three very brief follow-up questions that the user would likely ask next about their healthcare plan and employee handbook.
-Use double angle brackets to reference the questions, e.g. <<Are there exclusions for prescriptions?>>.
+    follow_up_questions_prompt_content = """Generate three very brief follow-up questions that the user would likely ask next about different github products and how to use them.
+Use double angle brackets to reference the questions, e.g. <<How do I enable single sign-on for my organization?>>.
 Try not to repeat questions that have already been asked.
 Only generate questions and do not generate any text before or after the questions, such as 'Next Questions'"""
 
-    query_prompt_template = """Below is a history of the conversation so far, and a new question asked by the user that needs to be answered by searching in a knowledge base about employee healthcare plans and the employee handbook.
-You have access to Azure Cognitive Search index with 100's of documents.
+    query_prompt_template = """Below is a history of the conversation so far, and a new question asked by the user that needs to be answered by searching in a knowledge base on documents available on docs.github.com.
+You have access to Azure Cognitive Search index with 1000's of documents.
 Generate a search query based on the conversation and the new question.
 Do not include cited source filenames and document names e.g info.txt or doc.pdf in the search query terms.
 Do not include any text inside [] or <<>> in the search query terms.
@@ -48,10 +48,10 @@ If the question is not in English, translate the question to English before gene
 If you cannot generate a search query, return just the number 0.
 """
     query_prompt_few_shots = [
-        {"role": USER, "content": "What are my health plans?"},
-        {"role": ASSISTANT, "content": "Show available health plans"},
-        {"role": USER, "content": "does my plan cover cardio?"},
-        {"role": ASSISTANT, "content": "Health plan cardio coverage"},
+        {"role": USER, "content": "What is a GitHub Action?"},
+        {"role": ASSISTANT, "content": "Show GitHub Actions documentation"},
+        {"role": USER, "content": "does code security perform secret scanning?"},
+        {"role": ASSISTANT, "content": "Yes, This table lists the secrets supported by secret scanning"},
     ]
 
     def __init__(
@@ -104,7 +104,7 @@ If you cannot generate a search query, return just the number 0.
                     "properties": {
                         "search_query": {
                             "type": "string",
-                            "description": "Query string to retrieve documents from azure search eg: 'Health care plan'",
+                            "description": "Query string to retrieve documents from azure search eg: 'GitHub Docs'",
                         }
                     },
                     "required": ["search_query"],
