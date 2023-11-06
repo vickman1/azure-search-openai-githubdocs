@@ -120,7 +120,7 @@ markupsafe==2.1.3
     #   jinja2
     #   quart
     #   werkzeug
-msal==1.24.1
+msal==1.25.0
     # via
     #   -r requirements.in
     #   azure-identity
@@ -247,7 +247,9 @@ priority==2.0.0
 pycparser==2.21
     # via cffi
 pyjwt[crypto]==2.8.0
-    # via msal
+    # via
+    #   msal
+    #   pyjwt
 python-dateutil==2.8.2
     # via pandas
 python-dotenv==1.0.0
